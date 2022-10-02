@@ -3,6 +3,19 @@ import { TextField, Typography, Paper, Button } from "@mui/material";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import { postCreate, postUpdate } from "../../actions/posts";
+import { styled } from "@mui/system";
+
+const CustomButton = styled(Button)({
+  color: "#fff",
+  backgroundColor: "#2192FF",
+  border: "1px solid black",
+  borderRadius: "15px",
+  "&:hover": {
+    color: "black",
+    backgroundColor: "#F57328",
+    transition: "all .4s ease-in-out",
+  },
+});
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
@@ -44,15 +57,26 @@ const Form = ({ currentId, setCurrentId }) => {
   };
 
   return (
-    <Paper>
+    <Paper
+      sx={{
+        backgroundImage: "#fff",
+        borderRadius: "20px",
+        boxShadow: "0 0 7px 1px",
+      }}
+    >
       <form
         autoComplete="off"
         noValidate
         onSubmit={handleSumbit}
-        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          padding: "10px",
+        }}
       >
-        <Typography variant="h6">
-          {currentId ? "Editing" : "Creating"} a Memory
+        <Typography variant="h6" fontFamily="Montserrat" paddingBottom="10px">
+          {currentId ? "Editing" : "Creating"} a Memory..
         </Typography>
         <TextField
           name="creator"
@@ -91,10 +115,13 @@ const Form = ({ currentId, setCurrentId }) => {
           label="Tags"
           fullWidth
           value={postData.tag}
-          onChange={(e) => setPostData({ ...postData, tag: e.target.value })}
+          onChange={(e) =>
+            setPostData({ ...postData, tag: e.target.value.split(",") })
+          }
           sx={{ margin: "5px" }}
         ></TextField>
         <div
+          className="input-file"
           style={{
             width: "97%",
             margin: "20px 0 10px 90px",
@@ -110,26 +137,26 @@ const Form = ({ currentId, setCurrentId }) => {
             }
           ></FileBase>
         </div>
-        <Button
-          sx={{ margin: 2 }}
+        <CustomButton
+          sx={{
+            margin: 2,
+          }}
           variant="conatined"
-          color="primary"
-          size="large"
           type="sumbit"
           fullwidth
         >
           Sumbit
-        </Button>
-        <Button
-          sx={{ margin: 2 }}
+        </CustomButton>
+        <CustomButton
+          sx={{
+            margin: 2,
+          }}
           variant="conatined"
-          color="secondary"
-          size="small"
           onClick={clear}
           fullwidth
         >
           Clear
-        </Button>
+        </CustomButton>
       </form>
     </Paper>
   );

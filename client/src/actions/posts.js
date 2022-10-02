@@ -1,9 +1,16 @@
 import * as api from "../api";
+import {
+  FETCH_ALL,
+  CREATE,
+  DELETE,
+  LIKE,
+  UPDATE,
+} from "../constants/actionTypes";
 
 export const getPosts = () => async (dispatch) => {
   try {
     const { data } = await api.fetchPosts(); // --> get all posts from backend
-    dispatch({ type: "FETCH_ALL", payload: data }); // --> From here to Reducer
+    dispatch({ type: FETCH_ALL, payload: data }); // --> From here to Reducer
   } catch (error) {
     console.log(error);
   }
@@ -12,7 +19,7 @@ export const getPosts = () => async (dispatch) => {
 export const postCreate = (post) => async (dispatch) => {
   try {
     const { data } = await api.createPost(post); // --> add to DB array the new post
-    dispatch({ type: "CREATE", payload: data }); // --> From here to Reducer
+    dispatch({ type: CREATE, payload: data }); // --> From here to Reducer
   } catch (error) {
     console.log(error);
   }
@@ -21,7 +28,7 @@ export const postCreate = (post) => async (dispatch) => {
 export const postUpdate = (id, post) => async (dispatch) => {
   try {
     const { data } = await api.updatePost(id, post); // --> send to the server (api index.js) the updated post (DB)
-    dispatch({ type: "UPDATE", payload: data });
+    dispatch({ type: UPDATE, payload: data });
   } catch (error) {
     console.log(error);
   }
@@ -30,7 +37,16 @@ export const postUpdate = (id, post) => async (dispatch) => {
 export const postDelete = (id) => async (dispatch) => {
   try {
     await api.deletePost(id); // --> Make a delete request from DB
-    dispatch({ type: "DELETE", payload: id }); //--> send object to Reducer , in order to update store
+    dispatch({ type: DELETE, payload: id }); //--> send object to Reducer , in order to update store
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postLike = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.likePost(id);
+    dispatch({ type: LIKE, payload: data });
   } catch (error) {
     console.log(error);
   }

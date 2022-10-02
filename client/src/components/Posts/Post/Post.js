@@ -12,7 +12,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { postDelete } from "../../../actions/posts";
+import { postDelete, postLike } from "../../../actions/posts";
 
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
@@ -65,7 +65,7 @@ const Post = ({ post, setCurrentId }) => {
             setCurrentId(post._id);
           }}
         >
-          <MoreHorizIcon fontsize="default" />
+          <MoreHorizIcon />
         </Button>
       </div>
       <div
@@ -83,7 +83,7 @@ const Post = ({ post, setCurrentId }) => {
         {post.title}
       </Typography>
       <CardContent>
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="body2" color="textSecondary">
           {post.message}
         </Typography>
       </CardContent>
@@ -94,9 +94,15 @@ const Post = ({ post, setCurrentId }) => {
           justifyContent: "space-between",
         }}
       >
-        <Button size="small" color="primary" onClick={() => {}}>
-          <ThumbUpAltIcon fontSize="small" />
-          Like {post.likeCount}
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => {
+            dispatch(postLike(post._id));
+          }}
+        >
+          <ThumbUpAltIcon />
+          &nbsp; {post.likeCount}
         </Button>
         <Button
           size="small"
@@ -105,8 +111,7 @@ const Post = ({ post, setCurrentId }) => {
             dispatch(postDelete(post._id));
           }}
         >
-          <DeleteIcon fontSize="small" />
-          Delete
+          <DeleteIcon />
         </Button>
       </CardActions>
     </Card>

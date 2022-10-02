@@ -1,14 +1,25 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Container, AppBar, Typography, Grow, Grid } from "@mui/material";
+import {
+  Container,
+  AppBar,
+  Typography,
+  Grow,
+  Grid,
+  useMediaQuery,
+} from "@mui/material";
 import { useDispatch } from "react-redux";
 import { getPosts } from "./actions/posts";
-import memories from "./images/memories.png";
+import memories from "./images/memories.jpg";
+import pattern from "./images/pattern.jpg";
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
+import { useTheme } from "@mui/material";
 
 function App() {
   const [currentId, setCurrentId] = useState(null);
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("sm"));
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,31 +38,39 @@ function App() {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
+          boxShadow: "0 0 7px 1px",
         }}
       >
-        <Typography variant="h2" align="center">
+        <img src={memories} alt="memories" height="70"></img>
+        <Typography
+          variant="h2"
+          align="center"
+          fontFamily="Rancho"
+          sx={{ marginLeft: "20px" }}
+        >
           Memories
         </Typography>
         <img
           src={memories}
           alt="memories"
           height="70"
-          style={{ marginLeft: "10px" }}
+          style={{ marginLeft: "20px" }}
         ></img>
       </AppBar>
       <Grow in>
         <Container>
           <Grid
             container
+            direction={matches ? "column-reverse" : "none"}
             justify="space-between"
             alignItems="stretch"
-            spacing={3}
+            spacing={4}
           >
             <Grid item xs={12} sm={7}>
               {" "}
               <Posts setCurrentId={setCurrentId} />{" "}
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={4} marginLeft="auto">
               {" "}
               <Form currentId={currentId} setCurrentId={setCurrentId} />{" "}
             </Grid>
