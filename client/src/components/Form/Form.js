@@ -11,8 +11,8 @@ const CustomButton = styled(Button)({
   border: "1px solid black",
   borderRadius: "15px",
   "&:hover": {
-    color: "black",
-    backgroundColor: "#F57328",
+    color: "#fff",
+    backgroundColor: "#06283D",
     transition: "all .4s ease-in-out",
   },
 });
