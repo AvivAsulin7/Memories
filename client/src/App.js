@@ -63,14 +63,20 @@ function App() {
             container
             direction={matches ? "column-reverse" : "none"}
             justify="space-between"
-            alignItems="stretch"
+            alignItems={matches ? "center" : "stretch"}
             spacing={4}
           >
-            <Grid item xs={12} sm={7}>
+            <Grid item xs={12} sm={7} width={matches ? "100%" : null}>
               {" "}
               <Posts setCurrentId={setCurrentId} />{" "}
             </Grid>
-            <Grid item xs={12} sm={4} marginLeft="auto">
+            <Grid
+              item
+              xs={12}
+              sm={4}
+              marginLeft="auto"
+              width={matches ? "100%" : null}
+            >
               {" "}
               <Form currentId={currentId} setCurrentId={setCurrentId} />{" "}
             </Grid>
