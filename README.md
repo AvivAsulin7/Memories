@@ -10,6 +10,7 @@ Link: https://memories-6eop.onrender.com/
   <li>Frontend- React js</li>
   <li>Backend- Node js</li>
   <li>Database- MongoDB</li>
+  <li>Hosting- Render</li>
 </ul>
 
 # Screenshots
