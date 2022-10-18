@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, CircularProgress } from "@mui/material";
+import { Grid, CircularProgress, Typography, Box } from "@mui/material";
 import { useSelector } from "react-redux";
 import Post from "./Post/Post";
 
@@ -7,7 +7,21 @@ const Posts = ({ setCurrentId }) => {
   const posts = useSelector((state) => state.posts); // fetch from store the posts
   console.log(posts);
   return !posts.length ? (
-    <CircularProgress />
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          margin: "50%",
+          justifyContent: "center",
+        }}
+      >
+        <Typography color="#fff" variant="h6">
+          Loading...
+        </Typography>
+        <CircularProgress />{" "}
+      </Box>
+    </>
   ) : (
     <Grid
       sx={{ display: "flex", alignItems: "center" }}

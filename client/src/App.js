@@ -61,7 +61,7 @@ function App() {
         <Container>
           <Grid
             container
-            direction={matches ? "column-reverse" : "none"}
+            flexDirection={matches ? "column-reverse" : "none"}
             justify="space-between"
             alignItems={matches ? "center" : "stretch"}
             spacing={4}
