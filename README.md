@@ -3,15 +3,11 @@
 A fullStack project that allows the user to upload memories on the site , edit them and delete them from DB.
 I used Redux and Material UI libaries.
 
-
-Link: https://memories-original.onrender.com/
-
 # Technologies
 <ul>
   <li>Frontend- React js</li>
   <li>Backend- Node js</li>
   <li>Database- MongoDB</li>
-  <li>Hosting- Render </li>
 </ul>
 
 # Screenshots
