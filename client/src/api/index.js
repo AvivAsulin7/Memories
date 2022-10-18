@@ -1,7 +1,6 @@
 import axios from "axios";
 
-//const url = "https://memories-original-backend.onrender.com/posts";
-const url = "http://localhost:5000/posts";
+const url = "https://memories-backend-gnsu.onrender.com/posts";
 
 export const fetchPosts = () => axios.get(url);
 export const createPost = (newPost) => axios.post(url, newPost);
